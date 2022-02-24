@@ -9,7 +9,7 @@ import random
 import webbrowser
 from wikipediaapi import Wikipedia
 
-
+# Блок команд
 option = {
     'name': ('окси', 'oxy', 'oksi', 'okci', 'окс', 'охи', 'фокси'),
     'tellbar': ('скажи', 'расскажи', 'подскажи', 'сколько', 'какая', 'какой', 'какие', 'который',
@@ -42,7 +42,7 @@ def speak(what):
 speak_engine = pyttsx3.init()
 
 
-# отделение имени и вопросительного слова от команд
+# Отделение имени и вопросительного слова от команд
 def callback(recognizer, audio):
     try:
         voice = recognizer.recognize_google(audio, language="ru-RU").lower()
@@ -67,7 +67,7 @@ def callback(recognizer, audio):
         print('Программа завершена пользователем')
 
 
-# распознование невнятной речи или отделение шума от речи
+# Распознование невнятной речи или отделение шума от речи
 def recognize_cmd(cmd):
     RC = {'cmd': '', 'percent': 0}
     for c, v in option['cmd'].items():
@@ -80,7 +80,7 @@ def recognize_cmd(cmd):
     return RC
 
 
-# команды
+# Команды
 def exe_cmd(cmd):
     try:
         if cmd == 'hello':
@@ -167,15 +167,16 @@ speak('Я могу выполнять следующие функции: \n'
       'Открыть видео на платформе YouTube, \n'
       'Помочь загадать случайное число, ')
 speak('Чем я могу вам служить?')
-# Приветстивие
 
+# Переменные
 recognizers = speech_recognition.Recognizer()
 microphone = speech_recognition.Microphone(device_index=1)
 
-
+# Чувствительность микрофона
 with microphone:
     recognizers.adjust_for_ambient_noise(microphone, duration=2)
 
+# Прекращает слушать после смены тональности записи звука, слушает ту тональность где есть nickname из блока команд
 stop_listening = recognizers.listen_in_background(microphone, callback)
 while True:
     time.sleep(0.1)
