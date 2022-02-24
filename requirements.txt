@@ -1,0 +1,10 @@
+speech_recognition
+time
+pyttsx3
+datetime
+os
+fuzzywuzzy
+pyowm
+random
+webbrowser
+wikipediaapi
